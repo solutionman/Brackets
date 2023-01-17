@@ -6,8 +6,8 @@ public class Brackets {
 //        Scanner scanner = new Scanner(System.in);
         String input;// = scanner.nextLine();
 
-//        input = "(()";
-//        input = "()(())";
+        input = "(()";
+        input = "()(())";
 //        input = ")()())";
 //        input = ")(";
 //        input = "())(()())(()";
@@ -17,12 +17,14 @@ public class Brackets {
         String tempInput = input;
         Part part = getPart(tempInput);
         Part tempPart = part;
+        int addToIndex = 0;
         while (!isValid(tempPart.getValue())) {
             tempPart = getPart(tempPart.getValue().substring(1));
+            addToIndex++;
         }
         System.out.println(tempPart.getValue());
-        tempInput = tempInput.substring(part.getIndFirst(), part.getIndLast());
-
+        tempInput = input.substring(tempPart.getValue().length() + addToIndex);
+        System.out.println(tempInput);
     }
 
     public static Part getPart(String input) {
