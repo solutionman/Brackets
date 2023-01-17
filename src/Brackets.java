@@ -10,10 +10,10 @@ public class Brackets {
         input = "()(())";
 //        input = ")()())";
 //        input = ")(";
-//        input = "())(()())(()";
+        input = "())(()())(()";
 //        String result = checkBrackets(input);
 //        System.out.println(result);
-        input = "((())()";
+        input = ")(())()";
         String tempInput = input;
         Part part = getPart(tempInput);
         Part tempPart = part;
@@ -23,7 +23,7 @@ public class Brackets {
             addToIndex++;
         }
         System.out.println(tempPart.getValue());
-        tempInput = input.substring(tempPart.getValue().length() + addToIndex);
+        tempInput = input.substring(tempPart.getValue().length() + addToIndex + tempPart.getIndFirst());
         System.out.println(tempInput);
     }
 
@@ -60,7 +60,11 @@ public class Brackets {
                 }
             }
         }
-        part.setValue(input.substring(startIndx, endIndx));
+        if (startIndx > endIndx){
+            part.setValue("");
+        } else {
+            part.setValue(input.substring(startIndx, endIndx));
+        }
         part.setIndFirst(startIndx);
         part.setIndLast(endIndx);
         return part;
