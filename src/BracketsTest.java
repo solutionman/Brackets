@@ -4,7 +4,7 @@ import org.junit.Test;
 public class BracketsTest {
 
     @Test
-    public void printBracktesTest() {
+    public void getBracketsWithDescriptionTest() {
         Assert.assertEquals("2 - ()", Brackets.getBracketsWithDescription("(()"));
         Assert.assertEquals("4 - ()()", Brackets.getBracketsWithDescription(")()())"));
         Assert.assertEquals("6 - (()())", Brackets.getBracketsWithDescription(")(()())"));
@@ -12,12 +12,4 @@ public class BracketsTest {
         Assert.assertEquals("10 - ()(()())()", Brackets.getBracketsWithDescription("())(()())(()"));
     }
 
-//    @Test
-//    public void checkBracketsTest() {
-//        Assert.assertEquals("()", Brackets.checkBrackets("(()"));
-//        Assert.assertEquals("()()", Brackets.checkBrackets(")()())"));
-//        Assert.assertEquals("(()())", Brackets.checkBrackets(")(()())"));
-//        Assert.assertEquals("", Brackets.checkBrackets(")("));
-//        Assert.assertEquals("()(()())()", Brackets.checkBrackets("())(()())(()"));
-//    }
 }
