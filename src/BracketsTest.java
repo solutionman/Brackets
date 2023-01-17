@@ -5,11 +5,11 @@ public class BracketsTest {
 
     @Test
     public void printBracktesTest() {
-        Assert.assertEquals("()", Brackets.printBrackets("(()"));
-        Assert.assertEquals("()()", Brackets.printBrackets(")()())"));
-        Assert.assertEquals("(()())", Brackets.printBrackets(")(()())"));
-        Assert.assertEquals("", Brackets.printBrackets(")("));
-        Assert.assertEquals("()(()())()", Brackets.printBrackets("())(()())(()"));
+        Assert.assertEquals("2 - ()", Brackets.getBracketsWithDescription("(()"));
+        Assert.assertEquals("4 - ()()", Brackets.getBracketsWithDescription(")()())"));
+        Assert.assertEquals("6 - (()())", Brackets.getBracketsWithDescription(")(()())"));
+        Assert.assertEquals("0", Brackets.getBracketsWithDescription(")("));
+        Assert.assertEquals("10 - ()(()())()", Brackets.getBracketsWithDescription("())(()())(()"));
     }
 
 //    @Test

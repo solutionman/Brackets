@@ -15,6 +15,10 @@ public class Brackets {
 //        System.out.println(result);
 //        input = ")(())()";
 //        printBrackets(input);
+
+    }
+
+    static String getBracketsWithDescription(String input) {
         Map<Character, Character> brackets = new HashMap<>();
         brackets.put(')', '(');
         Stack<Character> stack = new Stack<>();
@@ -29,20 +33,16 @@ public class Brackets {
                 char top = stack.isEmpty() ? '?' : stack.pop();
                 if (top == brackets.get(c)) {
                     counter++;
-                    if(stack.isEmpty()){
+                    if (stack.isEmpty()) {
                         result.add(top);
-                        for (Character ch : buffer){
-                            result.add(ch);
-                        }
+                        result.addAll(buffer);
                         result.add(c);
                         buffer = new ArrayList<>();
                     } else {
                         buffer.add(top);
                         buffer.add(c);
-                        if(input.length() == i +1){
-                            for (Character ch : buffer){
-                                result.add(ch);
-                            }
+                        if (input.length() == i + 1) {
+                            result.addAll(buffer);
                         }
                     }
 
@@ -50,10 +50,18 @@ public class Brackets {
             }
         }
 //        System.out.println(result);
-        System.out.print(counter * 2 + " - " );
-        for(Character c : result){
-            System.out.print(c);
+//        System.out.print(counter * 2 + " - " );
+//        for(Character c : result){
+//            System.out.print(c);
+//        }
+        if (counter == 0) {
+            return "0";
         }
+        StringBuilder finalString = new StringBuilder(counter * 2 + " - ");
+        for (Character c : result) {
+            finalString.append(c);
+        }
+        return finalString.toString();
     }
 
     public static String printBrackets(String input) {
