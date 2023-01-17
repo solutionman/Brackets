@@ -7,13 +7,19 @@ public class Brackets {
         String input;// = scanner.nextLine();
 
         input = "(()";
-        input = "()(())";
-//        input = ")()())";
+        input = ")()())";
+//        input = ")(()())";
 //        input = ")(";
-        input = "())(()())(()";
+//        input = "())(()())(()";
 //        String result = checkBrackets(input);
 //        System.out.println(result);
-        input = ")(())()";
+//        input = ")(())()";
+        printBrackets(input);
+
+    }
+
+    public static String printBrackets(String input) {
+        String output = "";
         String tempInput = input;
         Part part = getPart(tempInput);
         Part tempPart = part;
@@ -22,9 +28,23 @@ public class Brackets {
             tempPart = getPart(tempPart.getValue().substring(1));
             addToIndex++;
         }
-        System.out.println(tempPart.getValue());
+//        System.out.print(tempPart.getValue());
+        output = output + tempPart.getValue();
         tempInput = input.substring(tempPart.getValue().length() + addToIndex + tempPart.getIndFirst());
-        System.out.println(tempInput);
+//        System.out.print(tempInput);
+//        output = output + tempInput;
+
+        part = getPart(tempInput);
+        tempPart = part;
+        addToIndex = 0;
+        while (!isValid(tempPart.getValue())) {
+            tempPart = getPart(tempPart.getValue().substring(1));
+            addToIndex++;
+        }
+
+        output = output + tempPart.getValue();
+        System.out.print(output);
+        return output;
     }
 
     public static Part getPart(String input) {
@@ -60,7 +80,7 @@ public class Brackets {
                 }
             }
         }
-        if (startIndx > endIndx){
+        if (startIndx > endIndx) {
             part.setValue("");
         } else {
             part.setValue(input.substring(startIndx, endIndx));
