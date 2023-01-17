@@ -2,17 +2,65 @@ import java.util.*;
 
 public class Brackets {
     public static void main(String[] args) {
-        System.out.println("enter brackets:");
-        Scanner scanner = new Scanner(System.in);
+//        System.out.println("enter brackets:");
+//        Scanner scanner = new Scanner(System.in);
         String input;// = scanner.nextLine();
 
 //        input = "(()";
 //        input = "()(())";
-        input = ")()())";
-        input = ")(";
-        input = "())(()())(()";
-        String result = checkBrackets(input);
-        System.out.println(result);
+//        input = ")()())";
+//        input = ")(";
+//        input = "())(()())(()";
+//        String result = checkBrackets(input);
+//        System.out.println(result);
+        input  = "((())";
+        System.out.println(getPart(input));
+        
+    }
+
+    public static String getPart(String input) {
+        char[] chars = input.toCharArray();
+        int count = 0;
+        int end = 0;
+        boolean start = false;
+        int startIndx = 0;
+        int endIndx = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if (!start) {
+                if (chars[i] == ')') {
+                    continue;
+                } else if (chars[i] == '(') {
+//                    count = 1;
+                    start = true;
+                    startIndx = i;
+                    continue;
+                }
+            }
+            if (start) {
+
+                if (chars[i] == '(') {
+                    count++;
+                    continue;
+                } else {
+                    endIndx = i + count + 1;
+                    if(chars.length < endIndx){
+                        endIndx = chars.length;
+                    }
+                    break;
+                }
+            }
+        }
+        return input.substring(startIndx, endIndx);
+    }
+
+
+    public static boolean isPair(String part) {
+        char[] partArray = part.toCharArray();
+        if (partArray[0] == '(' && partArray[partArray.length - 1] == ')') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static String checkBrackets(String input) {
@@ -45,7 +93,7 @@ public class Brackets {
                     j--;
                 }
                 add = k - i;
-                if(add == 0) add = 1;
+                if (add == 0) add = 1;
                 if (isValid(part.toString())) {
                     output.append(part);
                 }
