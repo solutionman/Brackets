@@ -14,8 +14,41 @@ public class Brackets {
 //        String result = checkBrackets(input);
 //        System.out.println(result);
 //        input = ")(())()";
-        printBrackets(input);
+//        printBrackets(input);
+        Map<Character, Character> brackets = new HashMap<>();
+        brackets.put(')', '(');
+        Stack<Character> stack = new Stack<>();
+        List<Character> result = new ArrayList<>();
+        List<Character> buffer = new ArrayList<>();
+        int counter = 0;
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (!brackets.containsKey(c)) {
+                stack.push(c);
+            } else {
+                char top = stack.isEmpty() ? '?' : stack.pop();
+                if (top == brackets.get(c)) {
+                    counter++;
+                    if(stack.isEmpty()){
+                        result.add(top);
+                        for (Character ch : buffer){
+                            result.add(ch);
+                        }
+                        result.add(c);
+                        buffer = new ArrayList<>();
+                    } else {
+                        buffer.add(top);
+                        buffer.add(c);
+                    }
 
+                }
+            }
+        }
+//        System.out.println(result);
+        System.out.print(counter * 2 + " - " );
+        for(Character c : result){
+            System.out.print(c);
+        }
     }
 
     public static String printBrackets(String input) {
