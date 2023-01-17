@@ -13,12 +13,20 @@ public class Brackets {
 //        input = "())(()())(()";
 //        String result = checkBrackets(input);
 //        System.out.println(result);
-        input  = "((())";
-        System.out.println(getPart(input));
-        
+        input = "((())()";
+        String tempInput = input;
+        Part part = getPart(tempInput);
+        Part tempPart = part;
+        while (!isValid(tempPart.getValue())) {
+            tempPart = getPart(tempPart.getValue().substring(1));
+        }
+        System.out.println(tempPart.getValue());
+        tempInput = tempInput.substring(part.getIndFirst(), part.getIndLast());
+
     }
 
-    public static String getPart(String input) {
+    public static Part getPart(String input) {
+        Part part = new Part();
         char[] chars = input.toCharArray();
         int count = 0;
         int end = 0;
@@ -43,14 +51,17 @@ public class Brackets {
                     continue;
                 } else {
                     endIndx = i + count + 1;
-                    if(chars.length < endIndx){
+                    if (chars.length < endIndx) {
                         endIndx = chars.length;
                     }
                     break;
                 }
             }
         }
-        return input.substring(startIndx, endIndx);
+        part.setValue(input.substring(startIndx, endIndx));
+        part.setIndFirst(startIndx);
+        part.setIndLast(endIndx);
+        return part;
     }
 
 
