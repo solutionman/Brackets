@@ -8,9 +8,9 @@ public class Brackets {
 
         input = "(()";
         input = ")()())";
-//        input = ")(()())";
-//        input = ")(";
-//        input = "())(()())(()";
+        input = ")(()())";
+        input = ")(";
+        input = "())(()())(()";
 //        String result = checkBrackets(input);
 //        System.out.println(result);
 //        input = ")(())()";
@@ -39,6 +39,11 @@ public class Brackets {
                     } else {
                         buffer.add(top);
                         buffer.add(c);
+                        if(input.length() == i +1){
+                            for (Character ch : buffer){
+                                result.add(ch);
+                            }
+                        }
                     }
 
                 }
